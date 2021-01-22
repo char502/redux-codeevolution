@@ -6,13 +6,15 @@ function CakeContainer(props) {
   return (
     <div>
       <h2>Number of Cakes - {props.numOfCakes}</h2>
-      <button>Buy Cake</button>
+      <button onClick={props.buyCake}>Buy Cake</button>
     </div>
   );
 }
 
 const mapStateToProps = state => {
-  numOfCakes: state.numOfCakes;
+  return {
+    numOfCakes: state.numOfCakes,
+  };
 };
 
 const mapDispatchToProps = dispatch => {
@@ -21,4 +23,5 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapDispatchToProps, mapDispatchToProps)(CakeContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(CakeContainer);
+// the connect functions connects the component to the Redux store
