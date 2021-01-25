@@ -1,9 +1,11 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { buyCake } from '../redux';
+import { buyIceCream } from '../redux';
 
 function HooksCakeContainer() {
-  const numOfCakes = useSelector(state => state.numOfCakes);
+  const numOfCakes = useSelector(state => state.cake.numOfCakes);
+  const numOfIceCreams = useSelector(state => state.iceCream.numOfIceCreams);
   // useSelector returns anything that is returned by this selector function
   const dispatch = useDispatch();
   // This returns a reference to the dispatch function from the redux store
@@ -12,6 +14,9 @@ function HooksCakeContainer() {
     <div>
       <h2>Num of cakes - {numOfCakes}</h2>
       <button onClick={() => dispatch(buyCake())}>Buy Cake</button>
+
+      <h2>Num of iceCreams - {numOfIceCreams}</h2>
+      <button onClick={() => dispatch(buyIceCream())}>Buy Ice Cream</button>
     </div>
   );
 }
