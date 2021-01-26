@@ -6,7 +6,7 @@ import inputReducer from './input/inputReducer';
 const rootReducer = combineReducers({
   cake: cakeReducer,
   iceCream: iceCreamReducer,
-  inputR: inputReducer,
+  inputReducer: inputReducer,
 });
 
 export default rootReducer;

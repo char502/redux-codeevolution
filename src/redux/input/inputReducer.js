@@ -1,10 +1,18 @@
 import { ADD_INPUT } from './inputTypes';
 import { DELETE_INPUT } from './inputTypes';
 
-const inputReducer = (state = [], action) => {
+const initialState = {
+  text: '',
+};
+
+const inputReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_INPUT:
-      return [...state, Object.assign({}, action.text)];
+      //   console.log(Object.assign({}, action.text));
+      return {
+        ...state,
+        text: action.text,
+      };
     case DELETE_INPUT:
       return state.filter((textData, index) => index !== action.itemID);
     default:
