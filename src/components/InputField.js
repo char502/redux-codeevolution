@@ -1,32 +1,30 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { addInput } from '../redux';
+import { addInput, deleteInput } from '../redux';
 
 function InputField(props) {
   const [inputText, setInputText] = useState('');
 
   const handleChange = e => {
     let { value } = e.target;
-
-    // console.log(inputText);
     setInputText(value);
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-
     let text = {
       text: inputText,
     };
-    console.log(text);
     setInputText('');
-
     props.addInput(text);
-
-    console.log(props);
   };
 
-  console.log(props);
+  const deleteItem = (itemID, e) => {
+    console.log(e);
+    console.log(itemID);
+    console.log(deleteInput);
+    props.deleteInput(itemID);
+  };
 
   return (
     <div>
@@ -36,20 +34,27 @@ function InputField(props) {
         <button type='submit'>Add to List</button>
         {/* <button>Delete From List</button> */}
       </form>
-      <div>{props.text.text}</div>
-      {/* <div>{props.text.map(item => item)}</div> */}
+      <div>
+        {props.arr.map((item, index) => (
+          <div key={item.text}>
+            <div>{item.text}</div>
+            <button onClick={e => deleteItem(index, e)}>Delete Item</button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
 
 const mapStateToProps = state => {
   return {
-    text: state.inputReducer.text,
+    arr: state.inputReducer.arr,
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   addInput: text => dispatch(addInput(text)),
+  deleteInput: itemID => dispatch(deleteInput(itemID)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(InputField);

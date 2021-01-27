@@ -2,7 +2,7 @@ import { ADD_INPUT } from './inputTypes';
 import { DELETE_INPUT } from './inputTypes';
 
 const initialState = {
-  text: '',
+  arr: [],
 };
 
 const inputReducer = (state = initialState, action) => {
@@ -11,10 +11,12 @@ const inputReducer = (state = initialState, action) => {
       //   console.log(Object.assign({}, action.text));
       return {
         ...state,
-        text: action.text,
+        arr: [...state.arr, action.text],
       };
     case DELETE_INPUT:
-      return state.filter((textData, index) => index !== action.itemID);
+      let blob = state.filter;
+      return blob.filter((data, index) => index !== action.itemID);
+
     default:
       return state;
   }
