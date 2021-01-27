@@ -20,9 +20,6 @@ function InputField(props) {
   };
 
   const deleteItem = (itemID, e) => {
-    console.log(e);
-    console.log(itemID);
-    console.log(deleteInput);
     props.deleteInput(itemID);
   };
 

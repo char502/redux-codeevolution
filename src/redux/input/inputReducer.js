@@ -14,9 +14,10 @@ const inputReducer = (state = initialState, action) => {
         arr: [...state.arr, action.text],
       };
     case DELETE_INPUT:
-      let blob = state.filter;
-      return blob.filter((data, index) => index !== action.itemID);
-
+      return {
+        ...state,
+        arr: state.arr.filter((item, index) => action.itemID !== index),
+      };
     default:
       return state;
   }
